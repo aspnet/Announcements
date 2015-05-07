@@ -8,4 +8,11 @@ Subscribe to this repo to be notified about major changes in ASP.NET 5 and Entit
 
 Check out the issue tracker with the [Announcements](https://github.com/aspnet/Announcements/labels/Announcement) label and [Breaking change](https://github.com/aspnet/Announcements/labels/Breaking%20change) label to see what's new and changed.
 
+Filter by milestone to find announcements or breaking changes for a specific release:
+
+* [1.0.0 beta4](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-beta4)
+* [1.0.0 beta5](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-beta5)
+
+=================
+
 To file a bug, please find the appropriate repo in https://github.com/aspnet and create a new issue. For general issue discussions please go to https://github.com/aspnet/Home/issues and create a new issue.
