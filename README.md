@@ -2,6 +2,8 @@
 
 Subscribe to this repo to be notified about major changes in ASP.NET 5 and Entity Framework 7.
 
+**Do not report issues in this repository because it is just for announcements.** Read below for more details.
+
 ![image](https://cloud.githubusercontent.com/assets/202643/7099148/d5b091f8-dfa1-11e4-8d13-c0195714f31e.png)
 
 All items posted to this repo are locked, but should all have links to separate discussion threads in the affected repo. Please use those discussion threads for questions and comments about a particular announcement. If you're not sure where to post a question, please log an issue in the [Home repo](https://github.com/aspnet/Home/issues/).
