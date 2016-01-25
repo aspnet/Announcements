@@ -6,7 +6,7 @@ This repo is for team **announcements** only. To file a **bug** or start a **dis
 
 =================
 
-Subscribe to this repo to be notified about major changes in ASP.NET 5 and Entity Framework 7.
+Subscribe to this repo to be notified about major changes in ASP.NET Core 1.0 and Entity Framework Core 1.0.
 
 ![image](https://cloud.githubusercontent.com/assets/202643/7099148/d5b091f8-dfa1-11e4-8d13-c0195714f31e.png)
 
