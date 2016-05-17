@@ -25,3 +25,4 @@ Filter by milestone to find announcements or breaking changes for a specific rel
 * [1.0.0 beta8](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-beta8)
 * [1.0.0 rc1](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-rc1)
 * [1.0.0 rc2](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-rc2)
+* [1.0.0](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0)
