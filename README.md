@@ -18,11 +18,17 @@ Check out the issue tracker with the [Announcements](https://github.com/aspnet/A
 
 Filter by milestone to find announcements or breaking changes for a specific release:
 
-* [1.0.0 beta4](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-beta4)
-* [1.0.0 beta5](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-beta5)
-* [1.0.0 beta6](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-beta6)
-* [1.0.0 beta7](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-beta7)
-* [1.0.0 beta8](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-beta8)
-* [1.0.0 rc1](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-rc1)
-* [1.0.0 rc2](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-rc2)
-* [1.0.0](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0)
+* 1.0.x
+   * [1.0.0 beta4](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-beta4)
+   * [1.0.0 beta5](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-beta5)
+   * [1.0.0 beta6](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-beta6)
+   * [1.0.0 beta7](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-beta7)
+   * [1.0.0 beta8](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-beta8)
+   * [1.0.0 rc1](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-rc1)
+   * [1.0.0 rc2](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-rc2)
+   * [1.0.0](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0)
+   * [1.0.1](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.1)
+* 1.1.x
+   * [1.1.0](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.1.0)
+* 2.0.x
+   * [2.0.0-preview1](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A2.0.0-preview1)
