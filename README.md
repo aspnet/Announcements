@@ -1,10 +1,11 @@
 # Announcements
 
-=================
+
+---
 
 This repo is for team **announcements** only. To file a **bug** or start a **discussion**, please find the appropriate repo in https://github.com/aspnet and create a new issue. For general issue discussions please go to https://github.com/aspnet/Home/issues and create a new issue.
 
-=================
+---
 
 Subscribe to this repo to be notified about major changes in ASP.NET Core and Entity Framework Core.
 
@@ -12,7 +13,7 @@ Subscribe to this repo to be notified about major changes in ASP.NET Core and En
 
 All items posted to this repo are locked, but should all have links to separate discussion threads in the affected repo. Please use those discussion threads for questions and comments about a particular announcement. If you're not sure where to post a question, please log an issue in the [Home repo](https://github.com/aspnet/Home/issues/).
 
-==================
+---
 
 Check out the issue tracker with the [Announcements](https://github.com/aspnet/Announcements/labels/Announcement) label and [Breaking change](https://github.com/aspnet/Announcements/labels/Breaking%20change) label to see what's new and changed.
 
