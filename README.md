@@ -32,3 +32,4 @@ Filter by milestone to find announcements or breaking changes for a specific rel
 * 2.0.x
    * [2.0.0-preview1](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A2.0.0-preview1)
    * [2.0.0-preview2](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A2.0.0-preview2)
+   * [2.0.0](https://github.com/aspnet/Announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A2.0.0)
