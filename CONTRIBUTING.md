@@ -7,7 +7,7 @@ This repo is for team **announcements** only. To file a **bug** or start a **dis
 
 When creating a new issue for an **announcement** make sure you do the following:
 * Create another issue in the appropriate repo to host the conversation
-* Link from the announcement to this other issue by saying "For discussion pleae use <link to other issue>"
+* Link from the announcement to this other issue by saying "For discussion please use INSERT LINK HERE"
 * In the announcement, lock the conversation so that people have to follow the link to post comments
 
 =====================
