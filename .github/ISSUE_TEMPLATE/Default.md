@@ -1,3 +1,7 @@
+---
+name: Do not post issues in this repo. Use aspnet/Home instead.
+about: This repo is for announcements made by ASP.NET team members only.
+---
 
 !!! DO NOT POST ISSUES IN THIS REPO !!!
 !!! DO NOT POST ISSUES IN THIS REPO !!!
