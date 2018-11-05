@@ -12,4 +12,4 @@ about: This repo is for announcements made by ASP.NET team members only.
 This repo is for team announcements only. See https://github.com/aspnet/announcements#announcements.
 
 To file a bug or start a discussion, please find the appropriate repo in https://github.com/aspnet and create a new issue. 
-For general issue discussions please go to https://github.com/aspnet/Home/issues and create a new issue.
+For general issue discussions please go to https://github.com/aspnet/AspNetCore/issues and create a new issue.
