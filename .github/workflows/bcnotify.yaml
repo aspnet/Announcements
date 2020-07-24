@@ -1,13 +1,14 @@
 name: "bc-notification"
 on: 
   issues:
-    types: [edited, labeled]
+    types: [labeled]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    if: github.event.label.name == 'Breaking change'
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: timheuer/issue-notifier@v1.0.2
       env:
         SENDGRID_API_KEY: ${{ secrets.SENDGRID_API }}
