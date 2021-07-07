@@ -15,7 +15,7 @@ Bracketed text is a placeholder; replace the text with the requested information
 
 ### Version introduced
 
-[Version in which the breaking change first occurred (for example, 3.0 for ASP.NET Core 3.0)]
+[Version in which the breaking change first occurred, including the preview number if applicable (for example, ASP.NET Core 6 Preview 6)]
 
 ### Old behavior
 
