@@ -31,8 +31,10 @@ Bracketed text is a placeholder; replace the text with the requested information
 ]
 
 ### Category
+<!-- Choose one of the following compatibility categories: -->
 
-ASP.NET
+- [ ] Binary compatibility (the newer version can be used without recompiling)
+- [ ] Source compatibility (successfully recompiling against newer version requires source changes)
 
 ### Affected APIs
 
