@@ -1,65 +1,80 @@
----
-name: ASP.NET Core breaking change
-about: Report a breaking change in ASP.NET Core
-
----
-<!--
-This issue template is for use in opening issues that document breaking changes. This template should be used to create an issue by Microsoft product team members who are documenting a breaking change.
-
-Bracketed text is a placeholder; replace the text with the requested information and remove the brackets before submitting the issue. Also, remove this comment before submitting the issue.
-
--->
-## [Change Title]
-
-[Brief description of the change]
-
-### Version introduced
-
-[Version in which the breaking change first occurred, including the preview number if applicable (for example, ASP.NET Core 6 Preview 6)]
-
-### Old behavior
-
-### New behavior
-
-### Reason for change
-
-### Recommended action
-
-[ Suggested steps if user is affected go here:
-- Possible workarounds
-- Example of code changes to handle change
-]
-
-### Category
-<!-- Choose one of the following compatibility categories: -->
-
-- [ ] Binary compatibility (the newer version can be used without recompiling)
-- [ ] Source compatibility (successfully recompiling against newer version requires source changes)
-
-### Affected APIs
-
-[ If no APIs are affected, this should read:
-     "Not detectable via API analysis"
-
-  If affected APIs are identifiable, include a link for each. The link takes the form:
-
-  `[friendly description of API](link to API on docs.microsoft.com)`
-
-  For example, `[String.IndexOf(String)](https://docs.microsoft.com/dotnet/api/system.string.indexof#System_String_IndexOf_System_String_)
-
-  For methods, if all overloads are affected, link to the general overloaded method page. For example:
-
-  <https://docs.microsoft.com/dotnet/api/system.string.indexof>
-
-  Otherwise, link to the individual method overload. For example:
-
-  <https://docs.microsoft.com/dotnet/api/system.string.indexof#System_String_IndexOf_System_String_>
-
-]
-
-<!-- Do not modify anything below this line -->
-
----
-#### Issue metadata
-
-* Issue type: breaking-change
+name: "ASP.NET Core breaking change"
+description: Report a change in ASP.NET Core that breaks something that worked in a previous version. Intended mostly for product-team use.
+title: "[Breaking change]: "
+labels: "Breaking change"
+assignees:
+ - gewarren
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Brief description of the breaking change.
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: What version of .NET introduced the breaking change?
+      options:
+        - .NET 6 Preview 6
+        - .NET 6 Preview 7
+        - .NET 6 RC1
+        - .NET 6 RC2
+        - .NET 6 GA
+        - Other (please put exact version in description textbox)
+    validations:
+      required: true
+  - type: textarea
+    id: old-behavior
+    attributes:
+      label: Previous behavior
+      description: Describe the previous behavior. Include code snippets if applicable.
+    validations:
+      required: true
+  - type: textarea
+    id: new-behavior
+    attributes:
+      label: New behavior
+      description: Describe the new behavior. Include code snippets if applicable.
+    validations:
+      required: true
+  - type: checkboxes
+    id: change-type
+    attributes:
+      label: Type of breaking change
+      options:
+        - label: Binary incompatible (code must be recompiled to use the newer API version)
+        - label: Source incompatible (code must be changed and recompiled to use the newer API version)
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason for change
+      description: Describe why the breaking change was introduced.
+    validations:
+      required: true
+  - type: textarea
+    id: recommended-action
+    attributes:
+      label: Recommended action
+      description: Describe the recommended action an affected user should take, such as workarounds or examples of code changes.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Feature area
+      description: What feature area(s) does the change affect?
+      options:
+        - ASP.NET Core (Default)
+  - type: textarea
+    id: affected-apis
+    attributes:
+      label: Affected APIs
+      description: List all the APIs affected by this change. For methods, clarify if it's all overloads or specific overloads.
+      placeholder: None.
+    validations:
+      required: true
