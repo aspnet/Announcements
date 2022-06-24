@@ -20,6 +20,8 @@ body:
       label: Version
       description: What version of .NET introduced the breaking change?
       options:
+        - .NET 7 Preview 6
+        - .NET 7 Preview 7
         - .NET 7 RC1
         - .NET 7 RC2
         - .NET 7
