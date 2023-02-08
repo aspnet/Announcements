@@ -43,6 +43,7 @@ body:
       required: true
   - type: checkboxes
     id: change-type
+    attributes:
       label: Type of breaking change
       description: This information will be used to label the issue appropriately. [(How do I decide?)](https://learn.microsoft.com/dotnet/core/compatibility/categories)
       options:
