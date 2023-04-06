@@ -24,6 +24,10 @@ body:
         - .NET 8 Preview 1
         - .NET 8 Preview 2
         - .NET 8 Preview 3
+        - .NET 8 Preview 4
+        - .NET 8 Preview 5
+        - .NET 8 Preview 6
+        - .NET 8 Preview 7
         - .NET 8 (other)
     validations:
       required: true
