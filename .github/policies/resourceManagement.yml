@@ -1,0 +1,18 @@
+id: 
+name: GitOps.PullRequestIssueManagement
+description: GitOps.PullRequestIssueManagement primitive
+owner: 
+resource: repository
+disabled: false
+where: 
+configuration:
+  resourceManagementConfiguration:
+    scheduledSearches: []
+    eventResponderTasks:
+    - if:
+      - payloadType: Issues
+      then:
+      - lockIssue
+      description: Lock new issues
+onFailure: 
+onSuccess: 
