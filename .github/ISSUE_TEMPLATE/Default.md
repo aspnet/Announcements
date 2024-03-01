@@ -1,5 +1,5 @@
 ---
-name: Do not post issues in this repo. Use aspnet/AspNetCore instead.
+name: Do not post issues in this repo. Use dotnet/AspNetCore instead.
 about: This repo is for announcements made by ASP.NET team members only.
 ---
 
@@ -11,5 +11,5 @@ about: This repo is for announcements made by ASP.NET team members only.
 
 This repo is for team announcements only. See https://github.com/aspnet/announcements#announcements.
 
-To file a bug or start a discussion, please find the appropriate repo in https://github.com/aspnet and create a new issue. 
-For general issue discussions please go to https://github.com/aspnet/AspNetCore/issues and create a new issue.
+To file a bug or start a discussion, please find the appropriate repo in https://github.com/dotnet and create a new issue. 
+For general issue discussions please go to https://github.com/dotnet/AspNetCore/issues and create a new issue.
