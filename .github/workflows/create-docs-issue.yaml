@@ -37,45 +37,60 @@ jobs:
             
             // Check if we've already created a docs issue for this breaking change
             // First, check for existing comments in the current issue
-            const comments = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issueNumber
-            });
-            
-            const commentExists = comments.data.some(comment => 
-              comment.body.includes('A documentation tracking issue has been created')
-            );
-            
-            if (commentExists) {
-              console.log('Docs issue comment already exists. Skipping.');
-              return;
+            let commentExists = false;
+            try {
+              const comments = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber
+              });
+              
+              commentExists = comments.data.some(comment => 
+                comment.body.includes('A documentation tracking issue has been created')
+              );
+              
+              if (commentExists) {
+                console.log('Docs issue comment already exists. Skipping.');
+                return;
+              }
+            } catch (error) {
+              console.warn('Failed to fetch comments, proceeding with search-based duplicate detection:', error);
+              // Continue with search-based duplicate detection
             }
             
             // Also check the docs repository for existing issues with the same title
             // Use a more robust search that can handle special characters
             const docsIssueTitle = `[Breaking Change] ${issueTitle}`;
-            const escapedTitle = docsIssueTitle.replace(/"/g, '\\"');
-            const searchResults = await github.rest.search.issuesAndPullRequests({
-              q: `"${escapedTitle}" repo:dotnet/AspNetCore.Docs is:issue in:title`
-            });
+            // Properly escape double quotes for use in search query
+            const escapedTitle = docsIssueTitle.replace(/"/g, '\\\\"');
             
-            if (searchResults.data.total_count > 0) {
-              console.log('Docs issue already exists in target repository. Skipping.');
-              // Add comment to the original issue with link to existing docs issue if not already present
-              const existingDocsIssue = searchResults.data.items[0];
-              try {
-                await github.rest.issues.createComment({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: issueNumber,
-                  body: `📝 A documentation tracking issue has been created: ${existingDocsIssue.html_url}`
-                });
-              } catch (commentError) {
-                console.error('Failed to post comment about existing docs issue:', commentError);
-                // Don't fail the workflow if we can't post the comment
+            try {
+              const searchResults = await github.rest.search.issuesAndPullRequests({
+                q: `"${escapedTitle}" repo:dotnet/AspNetCore.Docs is:issue in:title`
+              });
+              
+              if (searchResults.data.total_count > 0) {
+                console.log('Docs issue already exists in target repository.');
+                const existingDocsIssue = searchResults.data.items[0];
+                
+                // Try to add a comment with link to existing docs issue
+                try {
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issueNumber,
+                    body: `📝 A documentation tracking issue has been created: ${existingDocsIssue.html_url}`
+                  });
+                  console.log('Added comment linking to existing docs issue.');
+                } catch (commentError) {
+                  console.error('Failed to post comment about existing docs issue:', commentError);
+                  // Don't fail the workflow if we can't post the comment
+                }
+                return;
               }
-              return;
+            } catch (searchError) {
+              console.warn('Search for existing docs issues failed, proceeding with issue creation:', searchError);
+              // If search fails, proceed with creating the issue to avoid missing documentation
             }
             
             // Create the issue body for the docs repo
@@ -94,8 +109,9 @@ ${issueBody}
 Please add documentation for this breaking change to the ASP.NET Core documentation.`;
             
             // Create the issue in dotnet/aspnetcore.docs
+            let newIssue;
             try {
-              const newIssue = await github.rest.issues.create({
+              newIssue = await github.rest.issues.create({
                 owner: 'dotnet',
                 repo: 'AspNetCore.Docs',
                 title: `[Breaking Change] ${issueTitle}`,
@@ -103,15 +119,7 @@ Please add documentation for this breaking change to the ASP.NET Core documentat
                 labels: ['breaking-change', 'aspnet/Announcements']
               });
               
-              console.log(`Created issue: ${newIssue.data.html_url}`);
-              
-              // Comment on the original issue with a link to the docs issue
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issueNumber,
-                body: `📝 A documentation tracking issue has been created: ${newIssue.data.html_url}`
-              });
+              console.log(`Created docs issue: ${newIssue.data.html_url}`);
             } catch (error) {
               console.error('Error creating docs issue:', error);
               // Check if error is due to missing token permissions
@@ -119,4 +127,20 @@ Please add documentation for this breaking change to the ASP.NET Core documentat
                 throw new Error(`Failed to create docs issue due to insufficient permissions. Please ensure DOCS_ISSUE_TOKEN secret is configured with 'repo' scope. Error: ${error.message}`);
               }
               throw new Error(`Failed to create docs issue: ${error.message}`);
+            }
+            
+            // Comment on the original issue with a link to the docs issue
+            // This is in a separate try-catch so the workflow doesn't fail if commenting fails
+            try {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `📝 A documentation tracking issue has been created: ${newIssue.data.html_url}`
+              });
+              console.log('Added comment to original issue.');
+            } catch (commentError) {
+              console.error('Failed to post comment on original issue:', commentError);
+              // Don't fail the workflow - the docs issue was created successfully
+              console.log(`Docs issue created successfully at ${newIssue.data.html_url} but failed to comment on source issue.`);
             }
