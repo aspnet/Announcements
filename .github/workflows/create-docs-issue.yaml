@@ -53,21 +53,28 @@ jobs:
             }
             
             // Also check the docs repository for existing issues with the same title
+            // Use a more robust search that can handle special characters
             const docsIssueTitle = `[Breaking Change] ${issueTitle}`;
+            const escapedTitle = docsIssueTitle.replace(/"/g, '\\"');
             const searchResults = await github.rest.search.issuesAndPullRequests({
-              q: `"${docsIssueTitle}" repo:dotnet/AspNetCore.Docs is:issue`
+              q: `"${escapedTitle}" repo:dotnet/AspNetCore.Docs is:issue in:title`
             });
             
             if (searchResults.data.total_count > 0) {
               console.log('Docs issue already exists in target repository. Skipping.');
               // Add comment to the original issue with link to existing docs issue if not already present
               const existingDocsIssue = searchResults.data.items[0];
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issueNumber,
-                body: `📝 A documentation tracking issue has been created: ${existingDocsIssue.html_url}`
-              });
+              try {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  body: `📝 A documentation tracking issue has been created: ${existingDocsIssue.html_url}`
+                });
+              } catch (commentError) {
+                console.error('Failed to post comment about existing docs issue:', commentError);
+                // Don't fail the workflow if we can't post the comment
+              }
               return;
             }
             
@@ -113,4 +120,3 @@ Please add documentation for this breaking change to the ASP.NET Core documentat
               }
               throw new Error(`Failed to create docs issue: ${error.message}`);
             }
-
