@@ -17,6 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     # Only run if the issue has the "Breaking change" label
     if: contains(github.event.issue.labels.*.name, 'Breaking change')
+    # Limit permissions to only what's needed
+    permissions:
+      issues: write
+      contents: read
     # Prevent concurrent runs for the same issue to avoid race conditions
     concurrency:
       group: docs-issue-${{ github.event.issue.number }}
