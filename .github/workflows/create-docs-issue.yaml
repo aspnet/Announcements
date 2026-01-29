@@ -17,6 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     # Only run if the issue has the "Breaking change" label
     if: contains(github.event.issue.labels.*.name, 'Breaking change')
+    # Prevent concurrent runs for the same issue to avoid race conditions
+    concurrency:
+      group: docs-issue-${{ github.event.issue.number }}
+      cancel-in-progress: false
     steps:
       - name: Create issue in aspnetcore.docs
         uses: actions/github-script@v7
@@ -32,19 +36,38 @@ jobs:
             const issueBody = context.payload.issue.body || '';
             
             // Check if we've already created a docs issue for this breaking change
-            // by looking for existing comments with the specific marker text
+            // First, check for existing comments in the current issue
             const comments = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issueNumber
             });
             
-            const docsIssueAlreadyCreated = comments.data.some(comment => 
+            const commentExists = comments.data.some(comment => 
               comment.body.includes('A documentation tracking issue has been created')
             );
             
-            if (docsIssueAlreadyCreated) {
-              console.log('Docs issue already created for this breaking change. Skipping.');
+            if (commentExists) {
+              console.log('Docs issue comment already exists. Skipping.');
+              return;
+            }
+            
+            // Also check the docs repository for existing issues with the same title
+            const docsIssueTitle = `[Breaking Change] ${issueTitle}`;
+            const searchResults = await github.rest.search.issuesAndPullRequests({
+              q: `"${docsIssueTitle}" repo:dotnet/AspNetCore.Docs is:issue`
+            });
+            
+            if (searchResults.data.total_count > 0) {
+              console.log('Docs issue already exists in target repository. Skipping.');
+              // Add comment to the original issue with link to existing docs issue if not already present
+              const existingDocsIssue = searchResults.data.items[0];
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `📝 A documentation tracking issue has been created: ${existingDocsIssue.html_url}`
+              });
               return;
             }
             
@@ -90,5 +113,4 @@ Please add documentation for this breaking change to the ASP.NET Core documentat
               }
               throw new Error(`Failed to create docs issue: ${error.message}`);
             }
-
 
