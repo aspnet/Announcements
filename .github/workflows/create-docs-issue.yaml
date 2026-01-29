@@ -1,3 +1,12 @@
+# This workflow automatically creates a documentation tracking issue in the dotnet/AspNetCore.Docs
+# repository when a breaking change issue is opened or labeled in this repository.
+#
+# Setup Requirements:
+# - A GitHub Personal Access Token (PAT) or GitHub App token with 'repo' scope must be configured
+#   as a repository secret named 'DOCS_ISSUE_TOKEN' to allow creating issues in the docs repo.
+# - If DOCS_ISSUE_TOKEN is not configured, the workflow will attempt to use GITHUB_TOKEN,
+#   but this will likely fail due to insufficient permissions for cross-repository operations.
+
 name: "Create Docs Issue for Breaking Change"
 on: 
   issues:
