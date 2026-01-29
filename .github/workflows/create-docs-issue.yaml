@@ -32,7 +32,7 @@ jobs:
             const issueBody = context.payload.issue.body || '';
             
             // Check if we've already created a docs issue for this breaking change
-            // by looking for existing comments from the bot
+            // by looking for existing comments with the specific marker text
             const comments = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -40,7 +40,6 @@ jobs:
             });
             
             const docsIssueAlreadyCreated = comments.data.some(comment => 
-              comment.user.type === 'Bot' && 
               comment.body.includes('A documentation tracking issue has been created')
             );
             
@@ -85,5 +84,11 @@ Please add documentation for this breaking change to the ASP.NET Core documentat
               });
             } catch (error) {
               console.error('Error creating docs issue:', error);
-              core.setFailed(`Failed to create docs issue: ${error.message}`);
+              // Check if error is due to missing token permissions
+              if (error.status === 403 || error.status === 401) {
+                throw new Error(`Failed to create docs issue due to insufficient permissions. Please ensure DOCS_ISSUE_TOKEN secret is configured with 'repo' scope. Error: ${error.message}`);
+              }
+              throw new Error(`Failed to create docs issue: ${error.message}`);
             }
+
+
