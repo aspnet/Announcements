@@ -5,10 +5,7 @@
 name: "ASP.NET Core breaking change"
 description: Report a change in ASP.NET Core that breaks something that worked in a previous version. This form is intended to be used by the product team.
 title: "[Breaking change]: "
-labels:
-  - "Breaking change"
-assignees:
-  - gewarren
+labels: "Breaking change"
 body:
   - type: textarea
     id: description
